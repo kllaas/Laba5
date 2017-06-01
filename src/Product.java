@@ -7,6 +7,10 @@ import java.util.Date;
  */
 public class Product implements Comparable<Product> {
 
+    private String name;
+
+    private String units;
+
     private int price;
 
     private int amount;
@@ -15,7 +19,9 @@ public class Product implements Comparable<Product> {
 
     private StorageCondition storageCondition;
 
-    public Product(int price, int amount, Date date, StorageCondition storageCondition) {
+    public Product(String name, String units, int price, int amount, Date date, StorageCondition storageCondition) {
+        this.name = name;
+        this.units = units;
         this.price = price;
         this.amount = amount;
         this.date = date;
@@ -23,6 +29,8 @@ public class Product implements Comparable<Product> {
     }
 
     public Product() {
+        this.name = "";
+        this.units = "";
         this.price = 0;
         this.amount = 0;
         this.date = new Date();
@@ -30,7 +38,24 @@ public class Product implements Comparable<Product> {
     }
 
     public Product(Product product) {
-        this(product.getPrice(), product.getAmount(), product.getDate(), product.getStorageCondition());
+        this(product.getName(), product.getUnits(), product.getPrice(),
+                product.getAmount(), product.getDate(), product.getStorageCondition());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
     }
 
     public int getPrice() {
@@ -70,8 +95,10 @@ public class Product implements Comparable<Product> {
         DateFormat df = new SimpleDateFormat("MM.dd.yyyy");
 
         return "\n## Product" +
+                "\n      " + "name: " + name +
+                "\n      " + "units: " + units +
                 "\n      " + "price: " + price +
-                "\n      " + "date: " + df.format(date)+
+                "\n      " + "date: " + df.format(date) +
                 "\n      " + "conditions: " + storageCondition.toString() +
                 "\n      " + "address: " + amount + "\n";
     }
@@ -91,7 +118,7 @@ public class Product implements Comparable<Product> {
             return false;
         if (amount != other.amount)
             return false;
-        if (storageCondition!= other.storageCondition)
+        if (storageCondition != other.storageCondition)
             return false;
         if (date.compareTo(other.date) != 1)
             return false;

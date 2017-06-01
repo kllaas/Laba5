@@ -27,8 +27,12 @@ public class Main {
         Provider provider1 = new Provider();
         System.out.println(provider1);
 
-        System.out.println("Let`s compare provider with provider1: ");
-        System.out.println("Compare result: " + provider.equals(provider1));
+        System.out.println("Creating provider with copy constructor: ");
+        Provider provider2 = new Provider(provider1);
+        System.out.println(provider2);
+
+        System.out.println("Let`s compare provider1 with provider2: ");
+        System.out.println("Compare result: " + provider1.equals(provider2));
 
 
         System.out.println("\nCreate product with empty constructor: ");
@@ -38,12 +42,14 @@ public class Main {
 
         System.out.println("Create product: ");
 
+        String pName = IOUtils.readString("Input name: ");
+        String units = IOUtils.readString("Input units: ");
         int price = IOUtils.readInt("Input price: ");
         int amount = IOUtils.readInt("Input amount: ");
         Date date = IOUtils.readDate("Input date: ");
         Product.StorageCondition condition = IOUtils.readConditions("Input condition: ");
 
-        Product product1 = new Product(price, amount, date, condition);
+        Product product1 = new Product(pName, units, price, amount, date, condition);
 
         System.out.println(product1);
 
@@ -77,8 +83,8 @@ public class Main {
         System.out.println("Create delivery with copy constructor(based on delivery1): ");
         Delivery delivery2 = new Delivery(delivery1);
 
-        int price1 = IOUtils.readInt("Let`s change price: ");
-        delivery2.setPrice(price1);
+        int amount2 = IOUtils.readInt("Let`s change amount: ");
+        delivery2.setAmount(amount2);
 
         System.out.println(delivery2);
 
@@ -113,8 +119,8 @@ public class Main {
 
         System.out.println(delivery2);
 
-        System.out.println("Let`s compare warehouse with warehouse1: ");
-        System.out.println("Compare result: " + warehouse.equals(warehouse1));
+        System.out.println("Let`s compare warehouse1 with warehouse2: ");
+        System.out.println("Compare result: " + warehouse1.equals(warehouse2));
         System.out.println();
     }
 
